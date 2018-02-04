@@ -5,13 +5,41 @@
 </ion-header>
 
 <ion-content padding>
-  <h2>Welcome to Ionic!</h2>
-  <p>
-    This starter project comes with simple tabs-based layout for apps
-    that are going to primarily use a Tabbed UI.
-  </p>
-  <p>
-    Take a look at the <code>src/pages/</code> directory to add or change tabs,
-    update any existing page or create new pages.
-  </p>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <h1>Personal Budget</h1>
+        <p>How much left for eating out: ${{personal}}</p>
+      </ion-col>
+    </ion-row>
+    <ion-list>
+      <ion-item>
+        <ion-range min="0" max="200" (click)="openEdit()" [(ngModel)]="personal" color="secondary" disabled>
+          <ion-label range-left>$0</ion-label>
+          <ion-label range-right>$200</ion-label>
+        </ion-range>
+      </ion-item>
+      <span *ngIf="canEdit">
+        <ion-row>
+          <ion-col>
+            <button ion-button color="danger" (click)="remove(25)">$25</button>
+          </ion-col>
+          <ion-col>
+            <button ion-button color="danger" (click)="remove(10)">$10</button>
+          </ion-col>
+          <ion-col>
+              <button ion-button color="danger" (click)="remove(5)">$5</button>
+          </ion-col>
+          <ion-col>
+            <button ion-button color="danger" (click)="remove(1)">$1</button>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <button ion-button color="primary" (click)="undo()">Undo</button>
+          </ion-col>
+        </ion-row>
+      </span>
+    </ion-list>
+  </ion-grid>
 </ion-content>
